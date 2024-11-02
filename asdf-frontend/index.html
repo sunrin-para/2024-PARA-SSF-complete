@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PARA software</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="profile">
+      <div id="profile_frame">
+        <div id="profile_image">
+          <div class="overlay">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+            >
+              <mask
+                id="mask0_113_794"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="25"
+                height="24"
+              >
+                <rect x="0.5" width="24" height="24" fill="#D9D9D9" />
+              </mask>
+              <g mask="url(#mask0_113_794)">
+                <path
+                  d="M5.5 21C4.95 21 4.47917 20.8042 4.0875 20.4125C3.69583 20.0208 3.5 19.55 3.5 19V5C3.5 4.45 3.69583 3.97917 4.0875 3.5875C4.47917 3.19583 4.95 3 5.5 3H13.5V5H5.5V19H19.5V11H21.5V19C21.5 19.55 21.3042 20.0208 20.9125 20.4125C20.5208 20.8042 20.05 21 19.5 21H5.5ZM6.5 17H18.5L14.75 12L11.75 16L9.5 13L6.5 17ZM17.5 9V7H15.5V5H17.5V3H19.5V5H21.5V7H19.5V9H17.5Z"
+                  fill="white"
+                />
+              </g>
+            </svg>
+            <span class="text">사진 변경하기</span>
+          </div>
+        </div>
+        <div id="description">
+          <div id="name">이름</div>
+          <div id="tagline">성격</div>
+        </div>
+        <div id="correction">
+          <div id="correction_text">AI 프로필 수정하기</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chat_frame">
+      <div class="chat_list">
+        <!-- <div class="sent">
+          <div class="sent_bubble">
+            <div class="sent_text">하이</div>
+          </div>
+        </div> -->
+        <!-- <div class="received">
+          <div class="ai">
+            <div class="ai_image"></div>
+            <div class="ai_description">
+              <div class="ai_name">파라짱</div>
+              <div class="received_bubble">
+                <div class="received_text">
+                  안녕하세요
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <div id="chat_input">
+        <div id="chat_icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+          >
+            <mask
+              id="mask0_113_514"
+              style="mask-type: alpha"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="28"
+              height="28"
+            >
+              <rect width="28" height="28" fill="#D9D9D9" />
+            </mask>
+            <g mask="url(#mask0_113_514)">
+              <path
+                d="M7.00016 16.3335H16.3335V14.0002H7.00016V16.3335ZM7.00016 12.8335H21.0002V10.5002H7.00016V12.8335ZM7.00016 9.3335H21.0002V7.00016H7.00016V9.3335ZM2.3335 25.6668V4.66683C2.3335 4.02516 2.56197 3.47586 3.01891 3.01891C3.47586 2.56197 4.02516 2.3335 4.66683 2.3335H23.3335C23.9752 2.3335 24.5245 2.56197 24.9814 3.01891C25.4384 3.47586 25.6668 4.02516 25.6668 4.66683V18.6668C25.6668 19.3085 25.4384 19.8578 24.9814 20.3147C24.5245 20.7717 23.9752 21.0002 23.3335 21.0002H7.00016L2.3335 25.6668ZM6.0085 18.6668H23.3335V4.66683H4.66683V19.9793L6.0085 18.6668Z"
+                fill="#7442E8"
+              />
+            </g>
+          </svg>
+        </div>
+        <div id="line"></div>
+        <input
+          id="write"
+          contenteditable="true"
+          placeholder="텍스트를 입력하세요"
+          onkeypress="sendRequest(event)"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div id="modal-frame">
+          <div id="modal-container">
+            <div id="modal-section-name">
+              <div id="label-name">
+                <div></div>
+                <div class="no_change_cursor">이름</div>
+              </div>
+              <input
+                id="character_name"
+                class="modal-input"
+                placeholder="캐릭터의 이름을 입력해주세요"
+              />
+              <!-- <div>캐릭터의 이름을 입력해주세요</div> -->
+            </div>
+
+            <div id="modal-section-character">
+              <div id="modal-label-character">
+                <div></div>
+                <div class="no_change_cursor">성격</div>
+              </div>
+              <input id="character" class="modal-input" placeholder="귀여움" />
+            </div>
+
+            <div id="modal-section-additional">
+              <div id="modal-label-additional">
+                <div></div>
+                <div class="no_change_cursor">추가 내용</div>
+              </div>
+              <textarea
+                id="character_textarea"
+                class="modal-input"
+                style="height: 200px; width: 100%; resize: none; overflow: auto"
+                placeholder="캐릭터에 대한 추가 내용을 적어주세요"
+              ></textarea>
+            </div>
+          </div>
+
+          <div id="modal-section-buttons">
+            <div id="modal-button-update">
+              <div>프로필 업데이트</div>
+            </div>
+            <div id="modal-button-close">
+              <div>닫기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="fileInput" />
+    <script src="script.js"></script>
+  </body>
+</html>

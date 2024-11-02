@@ -1,0 +1,552 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  min-width: 940px;
+  padding: 32px 57px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: #1a1b1d;
+}
+
+#profile {
+  display: flex;
+  padding: 0px 90px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  align-self: stretch;
+  border-radius: 24px;
+}
+
+#profile_frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  align-self: stretch;
+}
+
+#profile_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 30px;
+  background: lightgray 50% / cover no-repeat;
+  transition: background 0.1s ease-in-out; /* 부드러운 이미지 전환을 위해 */
+  position: relative;
+  overflow: hidden;
+}
+
+#profile_image::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 20%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  background: url("./image/add_photo_alternate.svg") no-repeat center center /
+    contain;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  transform: translate(-50%, -50%);
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.overlay svg {
+  width: 20%;
+  height: 20%;
+}
+
+.overlay div:hover {
+  cursor: pointer;
+}
+
+.overlay .text {
+  align-self: stretch;
+  color: #fff;
+  font-family: SUIT;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  text-align: center;
+  cursor: pointer;
+}
+
+#profile_image:hover {
+  background: url(<path-to-image>) rgb(95, 89, 89) 50% / cover no-repeat;
+}
+
+#profile_image:hover .overlay {
+  opacity: 1;
+}
+
+#description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#name {
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: SUIT;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 50.4px */
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분을 말줄임표(...)로 표시 */
+  max-width: 200px;
+}
+
+#tagline {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: SUIT;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  cursor: default;
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분을 말줄임표(...)로 표시 */
+  max-width: 200px;
+}
+
+#correction {
+  display: flex;
+  padding: 14px 0px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #7135ff;
+  cursor: pointer;
+}
+
+#correction:hover {
+  background: #5c22e1;
+}
+
+#correction_text {
+  color: var(--White, #fff);
+  font-family: SUIT;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 25.2px */
+}
+
+#chat_frame {
+  display: flex;
+  padding: 40px 47px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat_list {
+  display: flex;
+  padding-top: 28px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+  align-self: stretch;
+  overflow-y: scroll;
+  padding-right: 20px;
+}
+/* Webkit 스크롤바 스타일 설정 */
+.chat_list::-webkit-scrollbar {
+  width: 12px; /* 스크롤바의 너비 */
+  display: none;
+}
+
+.chat_list::-webkit-scrollbar-track {
+  display: none; /* 트랙을 숨깁니다 */
+}
+
+.chat_list::-webkit-scrollbar-thumb {
+  background: rgba(115, 71, 216, 0.5); /* 반투명 핸들 색상 */
+  border-radius: 6px; /* 둥근 모서리 */
+  height: 15px;
+}
+
+.chat_list::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 75, 255, 0.8); /* 호버 시 핸들의 색상 */
+}
+
+/* 마우스가 div 위에 있을 때만 스크롤바 보이게 */
+.chat_list.show-scrollbar::-webkit-scrollbar {
+  display: flex;
+}
+
+.chat_list.show-scrollbar {
+  padding-right: 8px;
+}
+
+.sent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: stretch;
+}
+
+.sent_bubble {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px 0px 12px 12px;
+  background: #7442e8;
+}
+
+.sent_text {
+  color: var(--White, #fff);
+  font-family: SUIT;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  letter-spacing: -0.4px;
+  cursor: default;
+}
+
+.received {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.ai {
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.ai_image {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background: lightgray 50% / cover no-repeat;
+  background-image: none;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  margin-top: 10px;
+}
+
+.ai_description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.ai_name {
+  color: var(--White, #fff);
+  font-family: SUIT;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 25.2px */
+  cursor: default;
+}
+
+.received_bubble {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 12px 12px 12px;
+  background: var(--White, #fff);
+  max-width: 961px;
+  word-break: break-all;
+}
+
+.received_text {
+  color: #000;
+  font-family: SUIT;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  letter-spacing: -0.4px;
+  cursor: default;
+}
+
+#chat_input {
+  display: flex;
+  padding: 18px 28px;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  flex-direction: row;
+  border-radius: 8px;
+  background: #242424;
+  backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+#chat_input:focus-within {
+  border: 2px solid #8662db;
+}
+
+#chat_icon {
+  width: 28px;
+  height: 28px;
+}
+
+#line {
+  width: 2px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1%;
+}
+
+#write {
+  flex: 1 0 0;
+  color: var(--White, #fff);
+  font-family: SUIT;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  letter-spacing: -0.4px;
+  outline: none; /*클릭 시 외곽선 없애기*/
+  background: none;
+  border: none;
+}
+
+.button.primary {
+  background: #7135ff;
+}
+
+.button.secondary {
+  background: #363636;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 50;
+  width: 50%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border-radius: 20px;
+  background: #1a1b1d;
+}
+
+#modal-frame {
+  width: 100%;
+  height: 100%;
+  background: #1a1b1d;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  display: inline-flex;
+}
+
+#modal-container {
+  width: 100%;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Modal Section Styles */
+#modal-section-name,
+#modal-section-character,
+#modal-section-additional,
+#modal-section-buttons {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+#modal-section-name {
+  height: 76px;
+}
+
+#modal-section-character {
+  height: 76px;
+}
+
+#modal-section-additional {
+  height: 228px;
+}
+
+#modal-section-buttons {
+  height: 116px;
+  gap: 10px;
+}
+
+/* Label Styles */
+#label-name,
+#modal-label-character,
+#modal-label-additional {
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+}
+
+#label-name,
+#modal-label-character,
+#modal-label-additional {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-family: SUIT;
+  font-weight: 500;
+  line-height: 19.6px;
+  word-wrap: break-word;
+}
+
+#modal-label-additional {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Input Styles */
+#modal-input-name,
+#modal-input-character,
+#modal-input-additional {
+  align-self: stretch;
+  padding: 14px 16px;
+  background: #151515;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px rgba(255, 255, 255, 0.04) solid;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.modal-input {
+  align-self: stretch;
+  padding: 14px 16px;
+  background: #151515;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px rgba(255, 255, 255, 0.04) solid;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: SUIT;
+  font-weight: 500;
+  line-height: 22.4px;
+  outline: none;
+}
+
+/* Button Styles */
+#modal-button-update,
+#modal-button-close {
+  align-self: stretch;
+  padding: 14px 0;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+#modal-button-update {
+  background: #7135ff;
+  color: white;
+  font-size: 18px;
+  font-family: SUIT;
+  font-weight: 600;
+  line-height: 25.2px;
+  cursor: pointer;
+}
+
+#modal-button-update:hover {
+  background: #5c22e1;
+}
+
+#modal-button-close {
+  background: #363636;
+  color: white;
+  font-size: 18px;
+  font-family: SUIT;
+  font-weight: 600;
+  line-height: 25.2px;
+  cursor: pointer;
+}
+
+#modal-button-close:hover {
+  background: #303030;
+}
+
+.no_change_cursor {
+  cursor: default;
+}
+
+#fileInput {
+  display: none;
+}
