@@ -17,10 +17,10 @@ python -m venv venv
 python -m pip install -r requirements.txt
 ```
 ## 3. 환경 변수 설정(.env.example)하기
-    ```bash
+```bash
     MODEL_NAME=gpt-4o-mini-2024-07-18
-    OPENAI_KEY=thisisurOpenAIApiKey
-    ```
+    OPENAI_KEY=thisisurOpenAIApiKey(API키를 입력하세요)
+```
 
 ### 4.프로젝트 실행
 
